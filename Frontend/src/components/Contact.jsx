@@ -1,11 +1,104 @@
-import React from 'react'
+import React, { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-const contact = () => {
+const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    await axios
+      .post(
+        "http://localhost:4000/api/v1/message/send",
+        {
+          name,
+          email,
+          subject,
+          message,
+        },
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+      .then((res) => {
+        toast.success(res.data.message);
+        setName("");
+        setEmail("");
+        setMessage("");
+        setSubject("");
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  };
+
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+      <div className="contact container">
+        <div className="banner">
+          <div className="item">
+            <h4>Address</h4>
+            <p>Gwalior , M.P. , 474001</p>
+          </div>
+          <div className="item">
+            <h4>Call Us</h4>
+            <p>Call Us: +91-0000000000</p>
+          </div>
+          <div className="item">
+            <h4>Mail Us</h4>
+            <p>PS@gmail.com</p>
+          </div>
+        </div>
+        <div className="banner">
+          <div className="item">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28756.657047973423!2d78.1627839!3d26.2182878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3976c5c5d02295f5%3A0x2b720c1a6dd9f0f!2sGwalior%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1624957318955!5m2!1sen!2sin"
+              style={{ border: 0, width: "100%", height: "450px" }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <div className="item">
+            <form onSubmit={handleSendMessage}>
+              <h2>CONTACT</h2>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  type="email"
+                  placeholder="E-mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <input
+                type="text"
+                placeholder="Subject"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+              />
+              <textarea
+                rows={10}
+                placeholder="Message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <button type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default contact
+export default Contact;
