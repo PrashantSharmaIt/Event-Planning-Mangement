@@ -10,7 +10,7 @@ const HeroSection = () => {
         <div>
           <h1>Your Personal Favorate Foody</h1>
           <p>We believe that it is all about the Favorate Food and the small taste !!!</p>
-          <Link to='contact' spy={true} smooth={true} duration={500}>Book Now</Link>
+          <h3>Have A look </h3>
         </div>
       </div>
     </section>
