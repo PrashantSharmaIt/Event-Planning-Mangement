@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "build":"npm i && cd ./Frontend && npm i && npm run build",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
