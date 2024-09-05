@@ -12,12 +12,12 @@ dotenv.config(); // Load environment variables
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, './Frontend/build')));
+// Serve static files from the Vite build output inside the backend directory
+app.use(express.static(path.join(__dirname, './Frontend/dist')));
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './Frontend/build/index.html'));
+  res.sendFile(path.join(__dirname, './Frontend/dist/index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
