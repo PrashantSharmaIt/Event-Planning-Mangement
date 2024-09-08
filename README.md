@@ -36,6 +36,16 @@ This project is an event management application that allows users to plan, organ
    npm run dev
 5.Access the Frontend in your browser at http://localhost:5173. and backend at http://localhost:4000.
 
+
+## Deployment
+
+Check out deployed project on
+
+```bash
+  https://event-planning-mangement.onrender.com
+```
+
+
 # Usage
 * Navigate to the contact form to reach out directly.
 * Check the footer for my Gmail, LinkedIn, and contact number.
